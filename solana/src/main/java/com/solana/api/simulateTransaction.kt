@@ -3,6 +3,7 @@ package com.solana.api
 import com.solana.core.PublicKey
 import com.solana.networking.*
 import com.solana.networking.SolanaResponseSerializer
+import com.solana.networking.serialization.serializers.biginteger.BigIntegerJson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
@@ -54,7 +55,7 @@ data class SimulatedAccountValue (
     val executable:Boolean,
     val lamports: Long,
     val owner: String?,
-    val rentEpoch: Long,
+    val rentEpoch: BigIntegerJson,
 )
 
 internal fun SimulateTransactionSerializer() = SolanaResponseSerializer(SimulateTransactionValue.serializer())

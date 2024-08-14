@@ -275,7 +275,7 @@ class ApiTests {
         val account = "accountAddress"
         val request = ProgramAccountRequest(account)
         val expectedAccounts = listOf(AccountInfoWithPublicKey(
-            AccountInfo("programAccount", false, 0, "", 0),
+            AccountInfo("programAccount", false, 0, "", 0.toBigInteger()),
             account
         ))
 
@@ -335,7 +335,7 @@ class ApiTests {
         // given
         val accounts = listOf(HotAccount().publicKey)
         val accountsRequest = MultipleAccountsRequest(accounts.map { it.toBase58() })
-        val expectedAccountInfo = listOf(AccountInfo("testAccount", false, 0, "", 0))
+        val expectedAccountInfo = listOf(AccountInfo("testAccount", false, 0, "", 0.toBigInteger()))
         val solanaDriver = Api(MockRpcDriver().apply {
             willReturn(accountsRequest, expectedAccountInfo)
         })

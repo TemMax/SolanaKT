@@ -4,6 +4,7 @@ import com.solana.core.PublicKey
 import com.solana.models.RpcSendTransactionConfig
 import com.solana.networking.*
 import com.solana.networking.serialization.serializers.base64.BorshAsBase64JsonArraySerializer
+import com.solana.networking.serialization.serializers.biginteger.BigIntegerJson
 import com.solana.networking.serialization.serializers.solana.AnchorAccountSerializer
 import com.solana.networking.serialization.serializers.solana.SolanaResponseSerializer
 import com.solana.vendor.ResultError
@@ -41,8 +42,13 @@ class AccountRequest(
 }
 
 @Serializable
-data class AccountInfo<D>(val data: D?, val executable: Boolean,
-                          val lamports: Long, val owner: String?, val rentEpoch: Long)
+data class AccountInfo<D>(
+    val data: D?,
+    val executable: Boolean,
+    val lamports: Long,
+    val owner: String?,
+    val rentEpoch: BigIntegerJson
+)
 
 fun <A> SolanaAccountSerializer(serializer: KSerializer<A>) =
     AccountInfoSerializer(
